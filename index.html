@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>저장용량 계산 1.0</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/pricing/">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    
+</head>
+<body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+    </style>
+    <!-- 계산기 템플릿 만들기 -->
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3" style="background: linear-gradient(90deg,  #0099B0 0%, darkblue 100%);">
+                        <h4 class="my-0 fw-normal fw-bold" style="color:white; font-weight:bold; ">아이디스 저장용량 계산기</h4>
+                    </div>
+                    <div class="card-body">
+                         <ul class="index01" style="font-size: 1vw;">
+                            <li  class="fst-italic">제작자: IDIS Sales Team</li>
+                            <li class="fst-italic">버전: 1.0</li>
+                            <li class="fst-italic">원하는 설정 하신후 계산버튼을 누르시면 됩니다.</li>
+                            <li class="fst-italic text-danger">당부사항: 저장용량 관련 현장의 이해를 돕고자 만들었습니다. 참조용으로만 부탁드립니다</li>
+                        </ul>
+                        <main class="card">
+                            <div class="card-body row">
+                               <!-- <p class="camType">카메라 : 
+                                            <select name="camType">
+                                                <option value="d">돔카메라</option>
+                                                <option value="b">뷸렛카메라</option>
+                                                <option value="s">스피드돔카메라</option>
+                                                <option value="f">어안카메라</option>
+                                                <option value="e">기타</option>
+                                            </select></p>&ensp; -->
+                               <div class="cardCss input-group ">
+                                <span class="input-group-text">코 &nbsp; 덱</span>
+                                    <select class="form-control" id="codeci" >
+                                       <!-- <option value="0" >--선택--</option> -->
+                                       <option value="1">H.264</option>
+                                       <option value="0.85"selected >H.265</option>
+                                       <option value="0.8">H.265i</option>
+                                   </select>
+                                </div>
+                               <div class="cardCss input-group ">
+                                 <span class="input-group-text">해상도</span>
+                                   <select class="form-control" id="camResol" >
+                                       <!-- <option value="0" >--선택--</option> -->
+                                       <option value="0.05">41만 화소 (640x360)</option>
+                                       <option value="0.155"selected >2백만 화소 (1920x1080)</option>
+                                       <option value="0.258">5백만 화소 (2592 x 1944)</option>
+                                       <option value="0.29">8백만 화소 (3840 x 2160)</option>
+                                   </select>
+                                </div>
+                               <div class="cardCss input-group ">
+                                <span class="input-group-text"> 프레임</span> 
+                                   <select class="form-control" id="camFrame" >
+                                       <option value="1" >1 ips</option>
+                                       <option value="5">5 ips</option>
+                                       <option value="10">10 ips</option>
+                                       <option value="15" selected>15 ips</option>
+                                       <option value="30">30 ips</option>
+                                   </select>
+                                </div>
+                               <div class="cardCss input-group ">
+                                <span class="input-group-text">수 &nbsp; 량</span> 
+                                    <input class="form-control" id="camNum" type="number"value=1>
+                               </div>
+                               <div class="cardCss input-group ">
+                                <span class="input-group-text">일 &nbsp; 수</span> 
+                                    <input class="form-control" id="dayNum" type="number" value=30>
+                               </div>
+                               <div class="cardCss input-group ">
+                                    <span class="input-group-text">NVR 채널(CH)을 선택하세요.</span>
+                                    <select class="form-control" id="camCh" onchange="lineCalc('#resultPlace1','#camResol','#camFrame','#camNum')" >
+                                        <option value="4" >4CH</option>
+                                        <option value="8" >8CH</option>
+                                        <option value="16" selected >16CH</option>
+                                        <option value="32" >32CH</option>
+                                        <option value="64" >64CH</option>
+                                    </select>
+                                </div>
+                            
+                            </div>
+                        </main>
+                             <!-- <input type="checkbox" class="btn-check btn-danger" data-bs-toggle="collapse" href="#multiCollapseExample1" aria-expanded="false" aria-controls="multiCollapseExample1" id="btncheck1" autocomplete="off"/>
+                           <label class="btn btn-outline-danger" for="btncheck1">+</label> -->
+
+                        <!--     
+                                <div class="col">
+                                    <div class="collapse multi-collapse" id="multiCollapseExample1">
+                                        <div class="justify-content-between align-items-center " style="margin:0; padding:10px; --bs-bg-opacity: .5;" >
+                                            <div class="addDiv">
+                                                <div class="camType">카메라 : 
+                                                    <select name="camType">
+                                                        <option value="d">돔카메라</option>
+                                                        <option value="b">뷸렛카메라</option>
+                                                        <option value="s">스피드돔카메라</option>
+                                                        <option value="f">어안카메라</option>
+                                                        <option value="e">기타</option>
+                                                    </select></p>&ensp;
+                                                <p class="camResol">해상도 :
+                                                    <select id="camResol" onchange="lineCalc('#resultPlace1','#camResol','#camFrame','#camNum')" >
+                                                        <option value="0" selected>--선택--</option>
+                                                        <option value="0.05">41만 화소</option>
+                                                        <option value="0.155" >2백만 화소</option>
+                                                        <option value="0.258">5백만 화소</option>
+                                                        <option value="0.29">8백만 화소</option>
+                                                    </select></p>&ensp;
+                                                    <p class="camFrame">프레임 : 
+                                                        <select id="camFrame" onchange="lineCalc('#resultPlace1','#camResol','#camFrame','#camNum')" >
+                                                            <option value="1" >1 ips</option>
+                                                            <option value="5">5 ips</option>
+                                                            <option value="10">10 ips</option>
+                                                            <option value="15" selected>15 ips</option>
+                                                            <option value="30">30 ips</option>
+                                                        </select></p>&ensp;
+                                                <p> 수량 : <input id="camNum" type="number" value=1 onchange="lineCalc('#resultPlace1','#camResol','#camFrame','#camNum')" ></p>
+                                                <input type="checkbox" class="btn-check btn-danger" data-bs-toggle="collapse" href="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2" id="btncheck2" autocomplete="off"/>
+                                                <label class="btn btn-outline-danger" for="btncheck2">+</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="collapse multi-collapse" id="multiCollapseExample2">
+                                        <div class="justify-content-between align-items-center " style="margin:0; padding:10px; --bs-bg-opacity: .5;" >
+                                            <div class="addDiv">
+                                                <p class="camType">카메라 : 
+                                                    <select name="camType">
+                                                        <option value="d">돔카메라</option>
+                                                        <option value="b">뷸렛카메라</option>
+                                                        <option value="s">스피드돔카메라</option>
+                                                        <option value="f">어안카메라</option>
+                                                        <option value="e">기타</option>
+                                                    </select></p>&ensp;
+                                                <p class="camResol">해상도 :
+                                                    <select id="camResol" onchange="lineCalc('#resultPlace1','#camResol','#camFrame','#camNum')" >
+                                                        <option value="0" selected>--선택--</option>
+                                                        <option value="0.05">41만 화소</option>
+                                                        <option value="0.155" >2백만 화소</option>
+                                                        <option value="0.258">5백만 화소</option>
+                                                        <option value="0.29">8백만 화소</option>
+                                                    </select></p>&ensp;
+                                                    <p class="camFrame">프레임 : 
+                                                        <select id="camFrame" onchange="lineCalc('#resultPlace1','#camResol','#camFrame','#camNum')" >
+                                                            <option value="1" >1 ips</option>
+                                                            <option value="5">5 ips</option>
+                                                            <option value="10">10 ips</option>
+                                                            <option value="15" selected>15 ips</option>
+                                                            <option value="30">30 ips</option>
+                                                        </select></p>&ensp;
+                                                <p> 수량 : <input id="camNum" type="number" value=1 onchange="lineCalc('#resultPlace1','#camResol','#camFrame','#camNum')" ></p>
+                                                <input type="checkbox" class="btn-check btn-danger" data-bs-toggle="collapse" href="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3" id="btncheck3" autocomplete="off"/>
+                                                <label class="btn btn-outline-danger" for="btncheck3">+</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="collapse multi-collapse" id="multiCollapseExample3">
+                                        <div class="justify-content-between align-items-center " style="margin:0; padding:10px; --bs-bg-opacity: .5;" >
+                                            <div class="addDiv">
+                                                <p class="camType">카메라 : 
+                                                    <select name="camType">
+                                                        <option value="d">돔카메라</option>
+                                                        <option value="b">뷸렛카메라</option>
+                                                        <option value="s">스피드돔카메라</option>
+                                                        <option value="f">어안카메라</option>
+                                                        <option value="e">기타</option>
+                                                    </select></p>&ensp;
+                                                <p class="camResol">해상도 :
+                                                    <select id="camResol" onchange="lineCalc('#resultPlace1','#camResol','#camFrame','#camNum')" >
+                                                        <option value="0" selected>--선택--</option>
+                                                        <option value="0.05">41만 화소</option>
+                                                        <option value="0.155" >2백만 화소</option>
+                                                        <option value="0.258">5백만 화소</option>
+                                                        <option value="0.29">8백만 화소</option>
+                                                    </select></p>&ensp;
+                                                    <p class="camFrame">프레임 : 
+                                                        <select id="camFrame" onchange="lineCalc('#resultPlace1','#camResol','#camFrame','#camNum')" >
+                                                            <option value="1" >1 ips</option>
+                                                            <option value="5">5 ips</option>
+                                                            <option value="10">10 ips</option>
+                                                            <option value="15" selected>15 ips</option>
+                                                            <option value="30">30 ips</option>
+                                                        </select></p>&ensp;
+                                                <p> 수량 : <input id="camNum" type="number" value=1 onchange="lineCalc('#resultPlace1','#camResol','#camFrame','#camNum')" ></p>
+                                                <input type="checkbox" class="btn-check btn-danger" data-bs-toggle="collapse" href="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample3" id="btncheck3" autocomplete="off"/>
+                                                <label class="btn btn-outline-danger" for="btncheck3">x</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </main> -->
+                        <section>
+                            <button class="w-100 btn btn-lg btn-primary" onclick="calcTotal()">계산하기</button>&ensp;&ensp;
+                            <button class="w-100 btn btn-lg btn-secondary" onclick="location.reload()">초기화</button>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 계산기 만들기 -->
+    <div class="container" id="calc_result_box">
+        <div class="row">
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3" style="background: linear-gradient(90deg,  #0099B0 0%, darkblue 100%);">
+                        <h4 class="my-0 fw-normal fw-bold" style="color:white; font-weight:bold; ">계산 결과</h4>
+                    </div>
+                    <div id="calcResult" style="display:flex">
+                        <p > 여기에 답이 나옵니다 </p> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <script type="text/javascript">
+        function calcTotal(){
+            let codec = document.getElementById('codeci').value;
+            let fps = document.getElementById('camFrame').value;
+            let resol = document.getElementById('camResol').value;
+            let resol_name = document.getElementById('camResol').options[document.getElementById('camResol').selectedIndex].text;
+            let day = document.getElementById('dayNum').value;
+            let num = document.getElementById('camNum').value;
+            let ch = document.getElementById('camCh').value;
+            let nvrNum = Math.ceil(num/ch)? Math.ceil(num/ch):Math.round(num/ch);
+            let nvrCamNum = Math.ceil(num/nvrNum)? Math.ceil(num/nvrNum):Math.round(num/nvrNum);
+            let total = (((codec * resol * fps * day * num * 86400)/1024/1024/8)*1.05).toFixed(1);
+            document.querySelector('#calc_result_box').style.display = 'flex';
+            document.querySelector('.index01').style.display = 'none';
+            document.querySelector('#calcResult').innerHTML = 
+            (`
+                <div id="ul_list" class="col">
+                    <ul>
+                        <li> 총용량 :<span class="result_text">&nbsp; ${total} TB </span></li>
+                        <li> ${ch}CH NVR :<span class="result_text">&nbsp; ${nvrNum.toFixed(0)} 대</span></li>
+                        <li> ${ch}CH 1대당 용량 :<span class="result_text">&nbsp; ${(total/nvrNum).toFixed(0)}TB</span></li>
+                        <li> NVR당 카메라 등록수량: <span class="result_text">&nbsp;${(nvrCamNum).toFixed(0)}대</span></li>
+                    </ul>
+                </div>
+                <div id="cici" class="row g-0" ">
+                    <img src="/img/cici.png" alt="cici">
+                    <div class="card col">
+                        <div class="card-body" >
+                           <h4 class="card-title">제가 알려드릴께요~</h4>
+                           <p class="card_text"><span class="result_text">${resol_name}</span> 카메라
+                            <span class="result_text"> ${num}</span>대를 
+                            <span class="result_text">${day}</span>일 저장을 하려면
+                            총 <span class="result_text">${total}</span> TB 이 필요합니다.</br>
+                                <span class="result_text">${ch}</span>CH NVR은 
+                                <span class="result_text">${nvrNum.toFixed(0)}</span>대 필요하고요.~</br>
+                            NVR 1대당<span class="result_text"> ${(total/nvrNum).toFixed(0)}</span>TB씩 용량이 필요하고,</br>
+                            카메라는 NVR당 <span class="result_text">${(nvrCamNum).toFixed(0)}</span>대씩 등록하세요~</p>
+                        </div>
+                    </div>
+                </div>
+            
+            `);
+            console.log(ch);
+            console.log(fps);
+            console.log(resol);
+            console.log(day);
+            console.log(nvrNum);
+            console.log(num/nvrNum);
+            console.log(total);
+
+        }
+        //<img src="/img/cici.png" alt="cici" width="100px" height="100px" />
+
+    </script>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script> -->
+   
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+
+    
+    </style>
+
+</body>
+</html>
